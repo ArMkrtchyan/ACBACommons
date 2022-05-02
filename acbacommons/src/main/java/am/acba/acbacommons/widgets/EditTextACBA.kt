@@ -51,7 +51,7 @@ class EditTextACBA : AppCompatEditText, Validator {
         val incomingValues = context.obtainStyledAttributes(attrs, R.styleable.EditTextACBA)
         mValidatorEnum =
             ValidatorEnum.values()[incomingValues.getInt(R.styleable.EditTextACBA_validator, 0)]
-        mIsRequiredForValidation = mValidatorEnum != ValidatorEnum.NONE
+        mIsRequiredForValidation = mValidatorEnum != null && mValidatorEnum != ValidatorEnum.NONE
         incomingValues.recycle()
     }
 
