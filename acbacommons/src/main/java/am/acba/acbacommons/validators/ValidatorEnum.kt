@@ -1,0 +1,14 @@
+package am.acba.acbacommons.validators
+
+import java.util.regex.Pattern
+
+enum class ValidatorEnum(private val pattern: Pattern) {
+    NONE(Pattern.compile("")),
+    EMAIL(Pattern.compile("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+")),
+    NAME(Pattern.compile("^[\\p{L}.-]{3,30}$")),
+    PASSWORD(Pattern.compile(".{6,20}"));
+
+    fun isMatch(value: CharSequence?): Boolean {
+        return pattern.matcher((value ?: "").trim()).matches()
+    }
+}
