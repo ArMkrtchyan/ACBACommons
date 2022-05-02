@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="inputBackgroundColorLight">#F0F1F0</color>
+    <color name="colorPrimaryLight">#5B0088</color>
+    <color name="colorAccentLight">#FEE426</color>
+</resources>
