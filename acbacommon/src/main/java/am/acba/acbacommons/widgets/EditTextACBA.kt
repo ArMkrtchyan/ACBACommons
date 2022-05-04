@@ -21,17 +21,17 @@ class EditTextACBA : AppCompatEditText, Validator {
         init(attrs)
     }
 
-    private var errorMessage: String? = null
+    private var mErrorMessage: String? = null
     private var mIsRequiredForValidation by Delegates.notNull<Boolean>()
     private lateinit var mValidatorEnum: ValidatorEnum
-    private var textInputLayoutACBA: TextInputLayoutACBA? = null
+    private var mTextInputLayoutACBA: TextInputLayoutACBA? = null
     private val mTextWatcher by lazy {
         object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                textInputLayoutACBA?.error = null
+                mTextInputLayoutACBA?.error = null
                 removeListener()
             }
 
@@ -47,17 +47,16 @@ class EditTextACBA : AppCompatEditText, Validator {
     private fun init(attrs: AttributeSet) {
         context.obtainStyledAttributes(attrs, R.styleable.EditTextACBA).apply {
             mValidatorEnum = ValidatorEnum.values()[getInt(R.styleable.EditTextACBA_validator, 0)]
-            mIsRequiredForValidation = mValidatorEnum != null && mValidatorEnum != ValidatorEnum.NONE
-            errorMessage = getString(R.styleable.EditTextACBA_errorMessage)
+            mIsRequiredForValidation = mValidatorEnum != ValidatorEnum.NONE
+            mErrorMessage = getString(R.styleable.EditTextACBA_errorMessage)
             recycle()
         }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        if (parent.parent is TextInputLayoutACBA) textInputLayoutACBA = parent.parent as TextInputLayoutACBA
+        if (parent.parent is TextInputLayoutACBA) mTextInputLayoutACBA = parent.parent as TextInputLayoutACBA
     }
-
 
     override fun isRequiredForValidation() = mIsRequiredForValidation
 
@@ -67,8 +66,8 @@ class EditTextACBA : AppCompatEditText, Validator {
     }
 
     override fun showError() {
-        textInputLayoutACBA?.let { inputLayout ->
-            errorMessage?.let { error -> inputLayout.error = error } ?: run { inputLayout.error = mValidatorEnum.errorMessage }
+        mTextInputLayoutACBA?.let { inputLayout ->
+            mErrorMessage?.let { error -> inputLayout.error = error } ?: run { inputLayout.error = mValidatorEnum.errorMessage }
             removeTextChangedListener(mTextWatcher)
             addTextChangedListener(mTextWatcher)
         }

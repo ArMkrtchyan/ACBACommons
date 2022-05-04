@@ -31,8 +31,7 @@ class ButtonACBA : androidx.appcompat.widget.AppCompatButton {
     override fun setOnClickListener(onClickListener: OnClickListener?) {
         super.setOnClickListener { view ->
             onClickListener?.let { listener ->
-                if (mDoubleClick)
-                    listener.onClick(view)
+                if (mDoubleClick) listener.onClick(view)
                 else if (!mIsClicked) {
                     listener.onClick(view)
                     mIsClicked = true
