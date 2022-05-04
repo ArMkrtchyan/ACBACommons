@@ -43,6 +43,7 @@
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="#040404"
+                app:errorMessage="Invalid email format"
                 app:validator="email" />
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
@@ -59,6 +60,7 @@
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="#040404"
+                app:errorMessage="Invalid name format"
                 app:validator="name" />
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
@@ -79,13 +81,16 @@
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
-        <Button
+        <am.acba.acbacommons.widgets.ButtonACBA
             android:id="@+id/validate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryLight"
             android:layout_marginTop="16dp"
             android:text="validate"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:clickInterval="2000"
+            app:doubleClick="false" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
