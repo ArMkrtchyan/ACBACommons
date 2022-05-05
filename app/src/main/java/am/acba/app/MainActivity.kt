@@ -1,36 +1,36 @@
 package am.acba.app
 
-import am.acba.acbacommons.validators.Validator
+import am.acba.acbacommons.base.BaseActivityWithViewModel
 import am.acba.app.databinding.ActivityMainBinding
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
+import android.view.LayoutInflater
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewModel>() {
+
+    override val mViewModel: MainViewModel
+        get() = viewModel<MainViewModel>().value
+
+    override val inflate: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.apply {
-            validate.setOnClickListener {
-                validate(root)
-                Log.i("ClickTag","Clicked")
-            }
+        lifecycleScope.launch {
+            mViewModel.getRates()
+            delay(500)
+            mViewModel.getRates2()
+            delay(500)
+            mViewModel.getRates3()
         }
-    }
-
-    private fun validate(root: View) {
-        if (root is ViewGroup) {
-            for (view in root.children) {
-                validate(view)
-            }
-        } else if (root is Validator) {
-            if (root.isRequiredForValidation()) {
-                root.isValid()
+        mBinding.apply {
+            validate.setOnClickListener {
+                validate()
+                Log.i("ClickTag", "Clicked")
             }
         }
     }

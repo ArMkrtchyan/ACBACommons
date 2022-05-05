@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
 
@@ -14,12 +13,18 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "BASEURL", "\"https://www.acbadigital.am/api/\""
+        buildConfigField "String", "BASEURL_STAGING", "\"https://onlinebankingapi-test:4445/api/\""
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+
         }
     }
     compileOptions {
@@ -29,45 +34,28 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    buildFeatures {
-        dataBinding true
-        viewBinding true
-    }
 }
 
 dependencies {
 
-    implementation androidXDependencies.appcompat
-    implementation androidXDependencies.core
-    implementation androidXDependencies.constraintlayout
-    implementation androidXDependencies.support
-    implementation androidXDependencies.activity
-    implementation androidXDependencies.fragment
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+    implementation project(':acbacommon')
 
-    implementation thirthPartyDependencies.ccp
-    implementation thirthPartyDependencies.keyboardVisibilityEvent
+    kapt kaptDependencies.room
 
-    kapt kaptDependencies.glide
-
-    for (dep in liveDataVMDependencies) {
-        implementation dep.value
-    }
-    for (dep in googleDependencies) {
+    for (dep in koinDependencies) {
         implementation dep
     }
-    for (dep in firebaseDependencies) {
+    for (dep in roomDependencies) {
         implementation dep
     }
-    for (dep in navigationDependencies) {
+    for (dep in networkDependencies) {
         implementation dep
     }
     for (dep in coroutineDependencies) {
         implementation dep
     }
-    for (dep in mediaDependencies) {
-        implementation dep
-    }
-    for (dep in testDependencies) {
-        implementation dep.value
-    }
+
+    implementation testDependencies.junit
 }
