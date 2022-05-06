@@ -8,9 +8,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import com.google.android.material.textfield.TextInputEditText
 import kotlin.properties.Delegates
 
-class EditTextACBA : AppCompatEditText, Validator {
+class EditTextACBA : TextInputEditText, Validator {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {

@@ -5,8 +5,9 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import com.google.android.material.button.MaterialButton
 
-class ButtonACBA : androidx.appcompat.widget.AppCompatButton {
+class ButtonACBA : MaterialButton {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs)

@@ -5,9 +5,6 @@ import am.acba.app.databinding.ActivityMainBinding
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewModel>() {
@@ -20,13 +17,7 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launch {
-            mViewModel.getRates()
-            delay(500)
-            mViewModel.getRates2()
-            delay(500)
-            mViewModel.getRates3()
-        }
+        mViewModel.getRates()
         mBinding.apply {
             validate.setOnClickListener {
                 validate()

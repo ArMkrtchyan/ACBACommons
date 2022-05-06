@@ -15,18 +15,8 @@ class MainViewModel(private val mRatesRepository: RatesRepository) : BaseViewMod
             }
         }
     }
-    fun getRates2() {
-        viewModelScope.launch {
-            handleNetworkResult(mRatesRepository.getRates()) {
-                Log.i("MakeRequestTag", "Success: $it")
-            }
-        }
-    }
-    fun getRates3() {
-        viewModelScope.launch {
-            handleNetworkResult(mRatesRepository.getRates()) {
-                Log.i("MakeRequestTag", "Success: $it")
-            }
-        }
+
+    override fun retry() {
+        getRates()
     }
 }
