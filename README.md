@@ -7,6 +7,6 @@
 		}
 	}
 
-dependencies {
+        dependencies {
 	        implementation 'com.github.ArMkrtchyan:ACBACommons:v0.0.1-alpha-04'
 	}
