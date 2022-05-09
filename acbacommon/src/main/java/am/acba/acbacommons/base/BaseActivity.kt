@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +22,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     protected val mBinding: VB
         get() = _binding
     protected abstract val inflate: (LayoutInflater) -> VB
-
+    private val rootGroup by lazy { FrameLayout(this) }
     var mFragmentViewModel: BaseViewModel? = null
     private val layoutLoading by lazy { LayoutLoadingBinding.inflate(layoutInflater) }
     private val layoutError by lazy { LayoutErrorBinding.inflate(layoutInflater) }
@@ -31,13 +32,15 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         if (!::_binding.isInitialized || !keepBindingAlive) {
             _binding = inflate(layoutInflater)
         }
-        setContentView(_binding.root)
+        rootGroup.removeAllViews()
+        rootGroup.addView(_binding.root)
+        setContentView(rootGroup)
         lifecycleScope.launchWhenResumed {
             mFragmentViewModel?.stateFlow?.collectLatest(::setState)
         }
     }
 
-    protected fun validate(root: View = mBinding.root) {
+    protected fun validate(root: View = _binding.root) {
         if (root is ViewGroup) {
             for (view in root.children) {
                 validate(view)
@@ -50,32 +53,20 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     protected fun setState(state: State) {
-        val rootGroup = (mBinding.root as ViewGroup)
+        rootGroup.removeView(layoutError.root)
+        rootGroup.removeView(layoutLoading.root)
+        layoutError.errorMessage.text = ""
+        layoutError.retry.setOnClickListener(null)
         when (state) {
             is State.Loading -> {
-                rootGroup.removeView(layoutError.root)
                 rootGroup.addView(layoutLoading.root)
-                layoutError.errorMessage.text = ""
-                layoutError.retry.setOnClickListener(null)
             }
             is State.Empty -> {
-                rootGroup.removeView(layoutError.root)
-                rootGroup.removeView(layoutLoading.root)
-                layoutError.errorMessage.text = ""
-                layoutError.retry.setOnClickListener(null)
-
             }
             is State.Error -> {
-                rootGroup.removeView(layoutLoading.root)
                 rootGroup.addView(layoutError.root)
-                layoutError.errorMessage.text = state.throwable.localizedMessage
-                layoutError.retry.setOnClickListener { mFragmentViewModel?.retry() }
             }
             is State.Success -> {
-                rootGroup.removeView(layoutError.root)
-                rootGroup.removeView(layoutLoading.root)
-                layoutError.errorMessage.text = ""
-                layoutError.retry.setOnClickListener(null)
             }
         }
     }

@@ -7,95 +7,89 @@
 
     </data>
 
-    <FrameLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <am.acba.acbacommons.widgets.TextInputLayoutACBA
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp"
-            tools:context=".MainActivity">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            <am.acba.acbacommons.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:background="#B8B8B8"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="#040404"
+                app:validator="none" />
 
-                <am.acba.acbacommons.widgets.EditTextACBA
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B8B8B8"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="#040404"
-                    app:validator="none" />
+        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
-            </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            <am.acba.acbacommons.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:background="#B8B8B8"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="#040404"
+                app:errorMessage="Invalid email format"
+                app:validator="email" />
 
-                <am.acba.acbacommons.widgets.EditTextACBA
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B8B8B8"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="#040404"
-                    app:errorMessage="Invalid email format"
-                    app:validator="email" />
+        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
-            </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            <am.acba.acbacommons.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:background="#B8B8B8"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="#040404"
+                app:errorMessage="Invalid name format"
+                app:validator="name" />
 
-                <am.acba.acbacommons.widgets.EditTextACBA
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B8B8B8"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="#040404"
-                    app:errorMessage="Invalid name format"
-                    app:validator="name" />
+        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
-            </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.TextInputLayoutACBA
+            <am.acba.acbacommons.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:background="#B8B8B8"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="#040404"
+                app:validator="password" />
 
-                <am.acba.acbacommons.widgets.EditTextACBA
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#B8B8B8"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="#040404"
-                    app:validator="password" />
+        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
-            </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        <am.acba.acbacommons.widgets.ButtonACBA
+            android:id="@+id/validate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryLight"
+            android:text="validate"
+            android:textColor="#FFFFFF"
+            app:clickInterval="2000"
+            app:doubleClick="false" />
 
-            <am.acba.acbacommons.widgets.ButtonACBA
-                android:id="@+id/validate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryLight"
-                android:text="validate"
-                android:textColor="#FFFFFF"
-                app:clickInterval="2000"
-                app:doubleClick="false" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </FrameLayout>
-
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
