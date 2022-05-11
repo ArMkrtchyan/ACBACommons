@@ -10,6 +10,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:forceDarkAllowed="false"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".MainActivity">
@@ -80,6 +81,16 @@
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
+        <am.acba.acbacommons.widgets.CheckBoxACBA
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Checkbox text"
+            android:textColor="@android:color/black"
+            android:buttonTint="@android:color/black"
+            app:errorMessage="Must be checked"
+            app:mustBeChecked="true" />
+
         <am.acba.acbacommons.widgets.ButtonACBA
             android:id="@+id/validate"
             android:layout_width="match_parent"
@@ -87,9 +98,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryLight"
             android:text="validate"
-            android:textColor="#FFFFFF"
-            app:clickInterval="2000"
-            app:doubleClick="false" />
+            android:textColor="#FFFFFF"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

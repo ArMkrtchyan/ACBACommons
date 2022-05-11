@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">app</string>
+    <string name="empty_message">This field must be fill.</string>
+    <string name="min_length_message">Minimum length must be 3 symbol.</string>
 </resources>

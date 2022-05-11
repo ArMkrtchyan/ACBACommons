@@ -17,13 +17,13 @@ class ButtonACBA : MaterialButton {
         init(attrs)
     }
 
-    private var mDoubleClick = true
+    private var mDoubleClick = false
     private var mIsClicked = false
     private var mClickInterval = 800
 
     private fun init(attrs: AttributeSet) {
         context.obtainStyledAttributes(attrs, R.styleable.ButtonACBA).apply {
-            mDoubleClick = getBoolean(R.styleable.ButtonACBA_doubleClick, true)
+            mDoubleClick = getBoolean(R.styleable.ButtonACBA_isPreventClick, true)
             mClickInterval = getInt(R.styleable.ButtonACBA_clickInterval, 800)
             recycle()
         }

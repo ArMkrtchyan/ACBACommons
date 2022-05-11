@@ -7,7 +7,6 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
 import com.google.android.material.textfield.TextInputEditText
 import kotlin.properties.Delegates
 
@@ -23,6 +22,8 @@ class EditTextACBA : TextInputEditText, Validator {
     }
 
     private var mErrorMessage: String? = null
+    private var mEmptyErrorMessage: String? = null
+    private var mMinLengthErrorMessage: String? = null
     private var mIsRequiredForValidation by Delegates.notNull<Boolean>()
     private lateinit var mValidatorEnum: ValidatorEnum
     private var mTextInputLayoutACBA: TextInputLayoutACBA? = null
@@ -33,6 +34,7 @@ class EditTextACBA : TextInputEditText, Validator {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 mTextInputLayoutACBA?.error = null
+                mTextInputLayoutACBA?.isErrorEnabled = false
                 removeListener()
             }
 
@@ -52,6 +54,12 @@ class EditTextACBA : TextInputEditText, Validator {
             mErrorMessage = getString(R.styleable.EditTextACBA_errorMessage)
             recycle()
         }
+        try {
+            mEmptyErrorMessage = context.getString(context.resources.getIdentifier("empty_message", "string", context.packageName))
+            mMinLengthErrorMessage = context.getString(context.resources.getIdentifier("min_length_message", "string", context.packageName))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onAttachedToWindow() {
@@ -62,15 +70,19 @@ class EditTextACBA : TextInputEditText, Validator {
     override fun isRequiredForValidation() = mIsRequiredForValidation
 
     override fun isValid(): Boolean {
-        if (!mValidatorEnum.isMatch(text)) showError()
-        return mValidatorEnum.isMatch(text)
+        if (text?.isEmpty() == true) return showError(mEmptyErrorMessage)
+        if ((text?.length ?: 0) < 3) return showError(mMinLengthErrorMessage)
+        if (!mValidatorEnum.isMatch(text)) return showError(mErrorMessage)
+        return true
     }
 
-    override fun showError() {
+    override fun showError(message: String?): Boolean {
         mTextInputLayoutACBA?.let { inputLayout ->
-            mErrorMessage?.let { error -> inputLayout.error = error } ?: run { inputLayout.error = mValidatorEnum.errorMessage }
+            inputLayout.error = message
             removeTextChangedListener(mTextWatcher)
             addTextChangedListener(mTextWatcher)
+            mTextInputLayoutACBA?.isErrorEnabled = true
         }
+        return false
     }
 }
