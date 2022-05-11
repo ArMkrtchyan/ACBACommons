@@ -27,7 +27,9 @@
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="#040404"
-                app:validator="none" />
+                app:errorMessage="Invalid email regex"
+                app:regex="@string/regex_email"
+                app:validator="regex" />
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
 
@@ -61,6 +63,7 @@
                 android:padding="16dp"
                 android:textColor="#040404"
                 app:errorMessage="Invalid name format"
+                app:minLength="3"
                 app:validator="name" />
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
@@ -77,6 +80,7 @@
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="#040404"
+                app:minLength="6"
                 app:validator="password" />
 
         </am.acba.acbacommons.widgets.TextInputLayoutACBA>
@@ -85,9 +89,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:buttonTint="@android:color/black"
             android:text="Checkbox text"
             android:textColor="@android:color/black"
-            android:buttonTint="@android:color/black"
             app:errorMessage="Must be checked"
             app:mustBeChecked="true" />
 
@@ -98,7 +102,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryLight"
             android:text="validate"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

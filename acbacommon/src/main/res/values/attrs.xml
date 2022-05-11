@@ -10,8 +10,11 @@
             <enum name="email" value="1" />
             <enum name="name" value="2" />
             <enum name="password" value="3" />
+            <enum name="regex" value="4" />
         </attr>
         <attr name="errorMessage" />
+        <attr name="regex" format="string" />
+        <attr name="minLength" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="TextInputLayoutACBA"></declare-styleable>

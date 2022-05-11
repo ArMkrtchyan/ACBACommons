@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">app</string>
     <string name="empty_message">This field must be fill.</string>
-    <string name="min_length_message">Minimum length must be 3 symbol.</string>
+    <string name="min_length_message">Minimum length must be %d symbol.</string>
+    <string name="regex_email">[a-zA-Z0-9+._%\\-]{1,256}" + "@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\." + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+</string>
 </resources>

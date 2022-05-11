@@ -24,6 +24,8 @@ class EditTextACBA : TextInputEditText, Validator {
     private var mErrorMessage: String? = null
     private var mEmptyErrorMessage: String? = null
     private var mMinLengthErrorMessage: String? = null
+    private var mRegex: String? = null
+    private var mMinLength = 0
     private var mIsRequiredForValidation by Delegates.notNull<Boolean>()
     private lateinit var mValidatorEnum: ValidatorEnum
     private var mTextInputLayoutACBA: TextInputLayoutACBA? = null
@@ -52,11 +54,13 @@ class EditTextACBA : TextInputEditText, Validator {
             mValidatorEnum = ValidatorEnum.values()[getInt(R.styleable.EditTextACBA_validator, 0)]
             mIsRequiredForValidation = mValidatorEnum != ValidatorEnum.NONE
             mErrorMessage = getString(R.styleable.EditTextACBA_errorMessage)
+            mRegex = getString(R.styleable.EditTextACBA_regex)
+            mMinLength = getInt(R.styleable.EditTextACBA_minLength,0)
             recycle()
         }
         try {
             mEmptyErrorMessage = context.getString(context.resources.getIdentifier("empty_message", "string", context.packageName))
-            mMinLengthErrorMessage = context.getString(context.resources.getIdentifier("min_length_message", "string", context.packageName))
+            mMinLengthErrorMessage = String.format(context.getString(context.resources.getIdentifier("min_length_message", "string", context.packageName)),mMinLength)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -71,8 +75,8 @@ class EditTextACBA : TextInputEditText, Validator {
 
     override fun isValid(): Boolean {
         if (text?.isEmpty() == true) return showError(mEmptyErrorMessage)
-        if ((text?.length ?: 0) < 3) return showError(mMinLengthErrorMessage)
-        if (!mValidatorEnum.isMatch(text)) return showError(mErrorMessage)
+        if ((text?.length ?: 0) < mMinLength) return showError(mMinLengthErrorMessage)
+        if (!mValidatorEnum.isMatch(text, regex = mRegex)) return showError(mErrorMessage)
         return true
     }
 
