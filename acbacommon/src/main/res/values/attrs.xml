@@ -7,9 +7,14 @@
             <enum name="name" value="2" />
             <enum name="password" value="3" />
         </attr>
+        <attr name="errorMessage" format="string" />
     </declare-styleable>
     <declare-styleable name="TextInputLayoutACBA">
 
+    </declare-styleable>
+    <declare-styleable name="ButtonACBA">
+        <attr name="doubleClick" format="boolean" />
+        <attr name="clickInterval" format="integer" />
     </declare-styleable>
 
 </resources>

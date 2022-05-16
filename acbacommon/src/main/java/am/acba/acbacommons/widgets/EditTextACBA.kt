@@ -7,34 +7,31 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import kotlin.properties.Delegates
 
 class EditTextACBA : AppCompatEditText, Validator {
+
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init(attrs)
     }
 
+    private var mErrorMessage: String? = null
     private var mIsRequiredForValidation by Delegates.notNull<Boolean>()
     private lateinit var mValidatorEnum: ValidatorEnum
-    private var textInputLayoutACBA: TextInputLayoutACBA? = null
+    private var mTextInputLayoutACBA: TextInputLayoutACBA? = null
     private val mTextWatcher by lazy {
         object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                textInputLayoutACBA?.error = null
+                mTextInputLayoutACBA?.error = null
                 removeListener()
             }
 
@@ -48,41 +45,31 @@ class EditTextACBA : AppCompatEditText, Validator {
     }
 
     private fun init(attrs: AttributeSet) {
-        val incomingValues = context.obtainStyledAttributes(attrs, R.styleable.EditTextACBA)
-        mValidatorEnum =
-            ValidatorEnum.values()[incomingValues.getInt(R.styleable.EditTextACBA_validator, 0)]
-        mIsRequiredForValidation = mValidatorEnum != null && mValidatorEnum != ValidatorEnum.NONE
-        incomingValues.recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.EditTextACBA).apply {
+            mValidatorEnum = ValidatorEnum.values()[getInt(R.styleable.EditTextACBA_validator, 0)]
+            mIsRequiredForValidation = mValidatorEnum != ValidatorEnum.NONE
+            mErrorMessage = getString(R.styleable.EditTextACBA_errorMessage)
+            recycle()
+        }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        textInputLayoutACBA = getInputLayout(this)
-
-    }
-
-    private fun getInputLayout(view: View): TextInputLayoutACBA? {
-        return if (view.parent is TextInputLayoutACBA) {
-            view.parent as TextInputLayoutACBA
-        } else {
-            return getInputLayout(view.parent as View)
-        }
+        if (parent.parent is TextInputLayoutACBA) mTextInputLayoutACBA = parent.parent as TextInputLayoutACBA
     }
 
     override fun isRequiredForValidation() = mIsRequiredForValidation
 
     override fun isValid(): Boolean {
-        if (!mValidatorEnum.isMatch(text))
-            showError()
+        if (!mValidatorEnum.isMatch(text)) showError()
         return mValidatorEnum.isMatch(text)
     }
 
     override fun showError() {
-        textInputLayoutACBA?.let { inputLayout ->
-            inputLayout.error = mValidatorEnum.errorMessage
+        mTextInputLayoutACBA?.let { inputLayout ->
+            mErrorMessage?.let { error -> inputLayout.error = error } ?: run { inputLayout.error = mValidatorEnum.errorMessage }
             removeTextChangedListener(mTextWatcher)
             addTextChangedListener(mTextWatcher)
         }
     }
-
 }

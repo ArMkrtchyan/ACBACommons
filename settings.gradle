@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ACBACommons"
-include ':acbacommons'
+include ':acbacommon'
 include ':app'

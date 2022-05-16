@@ -3,8 +3,10 @@ package am.acba.app
 import am.acba.acbacommons.validators.Validator
 import am.acba.app.databinding.ActivityMainBinding
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             validate.setOnClickListener {
                 validate(root)
+                Log.i("ClickTag","Clicked")
             }
         }
     }
