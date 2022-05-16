@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditTextACBA">
+        <attr name="validator" format="enum">
+            <enum name="none" value="0" />
+            <enum name="email" value="1" />
+            <enum name="name" value="2" />
+            <enum name="password" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="TextInputLayoutACBA">
+
+    </declare-styleable>
+
+</resources>
