@@ -3,17 +3,18 @@
 
     <attr name="errorMessage" format="string" />
     <attr name="isPreventClick" format="boolean" />
+    <attr name="isRequiredForValidation" format="boolean" />
 
     <declare-styleable name="EditTextACBA">
         <attr name="validator" format="enum">
-            <enum name="none" value="0" />
-            <enum name="email" value="1" />
-            <enum name="name" value="2" />
-            <enum name="password" value="3" />
-            <enum name="regex" value="4" />
+            <enum name="regex" value="0" />
+            <enum name="password" value="1" />
+            <enum name="email" value="2" />
         </attr>
         <attr name="errorMessage" />
-        <attr name="regex" format="string" />
+        <attr name="isRequiredForValidation" />
+        <attr name="withRegex" format="string" />
+        <attr name="changeRegexTo" format="string" />
         <attr name="minLength" format="integer" />
     </declare-styleable>
 
@@ -30,7 +31,11 @@
     </declare-styleable>
 
     <declare-styleable name="ToolbarACBA"></declare-styleable>
-    <declare-styleable name="TextViewACBA"></declare-styleable>
-    <declare-styleable name="ImageViewACBA"></declare-styleable>
+    <declare-styleable name="TextViewACBA">
+        <attr name="isPreventClick" />
+    </declare-styleable>
+    <declare-styleable name="ImageViewACBA">
+        <attr name="isPreventClick" />
+    </declare-styleable>
 
 </resources>

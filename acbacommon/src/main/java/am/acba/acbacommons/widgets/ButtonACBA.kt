@@ -1,9 +1,8 @@
 package am.acba.acbacommons.widgets
 
 import am.acba.acbacommons.R
+import am.acba.acbacommons.shared.PreventDoubleClickListener
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import com.google.android.material.button.MaterialButton
 
@@ -17,31 +16,17 @@ class ButtonACBA : MaterialButton {
         init(attrs)
     }
 
-    private var mDoubleClick = false
-    private var mIsClicked = false
-    private var mClickInterval = 800
+    private var mIsPreventDoubleClick = true
 
     private fun init(attrs: AttributeSet) {
         context.obtainStyledAttributes(attrs, R.styleable.ButtonACBA).apply {
-            mDoubleClick = getBoolean(R.styleable.ButtonACBA_isPreventClick, true)
-            mClickInterval = getInt(R.styleable.ButtonACBA_clickInterval, 800)
+            mIsPreventDoubleClick = getBoolean(R.styleable.ButtonACBA_isPreventClick, true)
             recycle()
         }
     }
 
     override fun setOnClickListener(onClickListener: OnClickListener?) {
-        super.setOnClickListener { view ->
-            onClickListener?.let { listener ->
-                if (mDoubleClick) listener.onClick(view)
-                else if (!mIsClicked) {
-                    listener.onClick(view)
-                    mIsClicked = true
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        { mIsClicked = false },
-                        mClickInterval.toLong()
-                    )
-                }
-            }
-        }
+        if (mIsPreventDoubleClick) super.setOnClickListener(PreventDoubleClickListener(onClickListener))
+        else super.setOnClickListener(onClickListener)
     }
 }

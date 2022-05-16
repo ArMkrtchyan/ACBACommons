@@ -16,7 +16,7 @@ class ToolbarACBA : Toolbar {
     }
 
     private fun init(attrs: AttributeSet) {
-        context.obtainStyledAttributes(attrs, R.styleable.TextInputLayoutACBA).apply {
+        context.obtainStyledAttributes(attrs, R.styleable.ToolbarACBA).apply {
             recycle()
         }
     }

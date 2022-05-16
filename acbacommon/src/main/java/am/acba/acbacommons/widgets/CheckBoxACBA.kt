@@ -41,4 +41,8 @@ class CheckBoxACBA : AppCompatCheckBox, Validator {
         context.showToast(message)
         return false
     }
+
+    override fun setDefaultState() {
+
+    }
 }

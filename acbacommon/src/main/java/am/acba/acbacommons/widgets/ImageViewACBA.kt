@@ -1,6 +1,7 @@
 package am.acba.acbacommons.widgets
 
 import am.acba.acbacommons.R
+import am.acba.acbacommons.shared.PreventDoubleClickListener
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
@@ -15,9 +16,16 @@ class ImageViewACBA : AppCompatImageView {
         init(attrs)
     }
 
+    private var mIsPreventDoubleClick = true
+
     private fun init(attrs: AttributeSet) {
-        context.obtainStyledAttributes(attrs, R.styleable.TextInputLayoutACBA).apply {
+        context.obtainStyledAttributes(attrs, R.styleable.ImageViewACBA).apply {
+            mIsPreventDoubleClick = getBoolean(R.styleable.ImageViewACBA_isPreventClick, true)
             recycle()
         }
+    }
+    override fun setOnClickListener(onClickListener: OnClickListener?) {
+        if (mIsPreventDoubleClick) super.setOnClickListener(PreventDoubleClickListener(onClickListener))
+        else super.setOnClickListener(onClickListener)
     }
 }
