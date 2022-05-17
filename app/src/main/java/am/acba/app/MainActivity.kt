@@ -17,11 +17,13 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel.getRates()
         mBinding.apply {
             validate.setOnClickListener {
                 validate()
                 Log.i("ClickTag", "Clicked")
+                mViewModel.getRates()
+                mViewModel.getRates2()
+                mViewModel.getRates3()
             }
         }
     }
