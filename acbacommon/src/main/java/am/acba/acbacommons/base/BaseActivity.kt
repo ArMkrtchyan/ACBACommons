@@ -5,6 +5,7 @@ import am.acba.acbacommons.databinding.LayoutLoadingBinding
 import am.acba.acbacommons.state.State
 import am.acba.acbacommons.validators.Validator
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import androidx.core.view.children
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.flow.collectLatest
+import java.util.*
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
@@ -84,5 +86,13 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(event)
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val locale = Locale("en")
+        val newConfig = Configuration(newBase?.resources?.configuration)
+        Locale.setDefault(locale)
+        newConfig.setLocale(locale)
+        super.attachBaseContext(newBase?.createConfigurationContext(newConfig))
     }
 }

@@ -1,6 +1,11 @@
 package am.acba.domain.models
 
-data class RatesDomainModel(val rates: Rates) {
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class RatesDomainModel(val rates: Rates) : Parcelable {
+    @Parcelize
     data class Rates(
         val last_update_date: String,
         val cash: List<Rate>,
@@ -8,17 +13,19 @@ data class RatesDomainModel(val rates: Rates) {
         val card: List<Rate>,
         val cross: List<Rate>,
         val currencies: List<Currencies>,
-    )
+    ) : Parcelable
 
+    @Parcelize
     data class Rate(
         val buy: String,
         val sell: String,
         val centralBank: String,
         val currency: String,
-    )
+    ) : Parcelable
 
+    @Parcelize
     data class Currencies(
         val key: String,
         val value: String,
-    )
+    ) : Parcelable
 }

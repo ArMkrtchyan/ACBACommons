@@ -33,11 +33,11 @@ class CheckBoxACBA : AppCompatCheckBox, Validator {
     override fun isRequiredForValidation() = mIsRequiredForValidation
 
     override fun isValid(): Boolean {
-        if (!isChecked) return showError(mErrorMessage)
+        if (!isChecked) return setError(mErrorMessage)
         return isChecked
     }
 
-    override fun showError(message: String?): Boolean {
+    override fun setError(message: String?): Boolean {
         context.showToast(message)
         return false
     }

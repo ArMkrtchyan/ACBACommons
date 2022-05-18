@@ -1,17 +1,23 @@
 package am.acba.app
 
 import am.acba.acbacommons.base.BaseViewModel
+import am.acba.domain.models.RatesDomainModel
 import am.acba.domain.repositories.RatesRepository
 import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val mRatesRepository: RatesRepository) : BaseViewModel() {
+class MainViewModel(
+    private val stateHandler: SavedStateHandle,
+    private val mRatesRepository: RatesRepository
+) : BaseViewModel() {
 
     fun getRates() {
+        Log.i("SavedTag", stateHandler.get<RatesDomainModel>("Rates").toString())
         viewModelScope.launch {
             handleNetworkResult(mRatesRepository.getRates()) {
-
+                stateHandler["Rates"] = it
             }
         }
     }

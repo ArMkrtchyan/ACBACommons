@@ -60,17 +60,17 @@ class EditTextACBA : TextInputEditText, Validator {
     override fun isValid(): Boolean {
         if (isRequiredForValidation()) {
             val target = text.toString()
-            if (target.isEmpty()) return showError(context.getString(R.string.empty_error_message))
-            if (target.length < mMinLength) return showError(String.format(context.getString(R.string.minimum_length_error_message), mMinLength))
+            if (target.isEmpty()) return setError(context.getString(R.string.empty_error_message))
+            if (target.length < mMinLength) return setError(String.format(context.getString(R.string.minimum_length_error_message), mMinLength))
             return when (mValidatorEnum) {
-                ValidatorEnum.EMAIL -> if (!target.isValidEmail(newRegex = mNewRegex, withRegex = mWithRegex)) showError(mErrorMessage) else true
-                ValidatorEnum.PASSWORD -> if (!target.isValidPassword(newRegex = mNewRegex, withRegex = mWithRegex)) showError(mErrorMessage) else true
-                ValidatorEnum.REG_EX -> if (!target.isValidRegex(withRegex = mWithRegex ?: "")) showError(mErrorMessage) else true
+                ValidatorEnum.EMAIL -> if (!target.isValidEmail(newRegex = mNewRegex, withRegex = mWithRegex)) setError(mErrorMessage) else true
+                ValidatorEnum.PASSWORD -> if (!target.isValidPassword(newRegex = mNewRegex, withRegex = mWithRegex)) setError(mErrorMessage) else true
+                ValidatorEnum.REG_EX -> if (!target.isValidRegex(withRegex = mWithRegex ?: "")) setError(mErrorMessage) else true
             }
         } else return true
     }
 
-    override fun showError(message: String?): Boolean {
+    override fun setError(message: String?): Boolean {
         mTextInputLayoutACBA?.error = message
         mTextInputLayoutACBA?.isErrorEnabled = true
         return false

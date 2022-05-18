@@ -24,6 +24,7 @@ class TextViewACBA : AppCompatTextView {
             recycle()
         }
     }
+
     override fun setOnClickListener(onClickListener: OnClickListener?) {
         if (mIsPreventDoubleClick) super.setOnClickListener(PreventDoubleClickListener(onClickListener))
         else super.setOnClickListener(onClickListener)

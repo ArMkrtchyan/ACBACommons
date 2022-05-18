@@ -15,5 +15,4 @@ abstract class BaseActivityWithViewModel<VB : ViewBinding, VIEWMODEL : BaseViewM
             mViewModel.stateFlow.collectLatest(::setState)
         }
     }
-
 }

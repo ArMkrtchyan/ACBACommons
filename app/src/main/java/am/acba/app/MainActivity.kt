@@ -5,12 +5,12 @@ import am.acba.app.databinding.ActivityMainBinding
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.stateViewModel
 
 class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewModel>() {
 
     override val mViewModel: MainViewModel
-        get() = viewModel<MainViewModel>().value
+        get() = stateViewModel<MainViewModel>().value
 
     override val inflate: (LayoutInflater) -> ActivityMainBinding
         get() = ActivityMainBinding::inflate

@@ -17,10 +17,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         get() = _binding
     protected abstract val inflate: (LayoutInflater) -> VB
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (!::_binding.isInitialized || !keepBindingAlive) {
             _binding = inflate(layoutInflater)
