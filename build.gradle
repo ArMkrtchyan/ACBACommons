@@ -20,6 +20,7 @@ buildscript {
         koin_version = '3.1.2'
         lifecycle_version = '2.4.1'
         navigation_version = '2.5.0-alpha04'
+        work_manager = '2.7.0'
 
         // AndroidX dependencies
         androidXDependencies = [
@@ -65,9 +66,9 @@ buildscript {
         koinDependencies = [
                 // Koin
                 "io.insert-koin:koin-android:$koin_version",
-//                "io.insert-koin:koin-android-viewmodel:$koin_version",
-//                "io.insert-koin:koin-androidx-scope:$koin_version"
+                "io.insert-koin:koin-androidx-workmanager:$koin_version"
         ]
+
         kaptDependencies = [
                 hilt : "com.google.dagger:hilt-compiler:$hilt_version",
                 room : "androidx.room:room-compiler:$room_version",
@@ -119,6 +120,7 @@ buildscript {
 
         biometric = "androidx.biometric:biometric:1.1.0"
         jna = "net.java.dev.jna:jna:5.11.0@aar"
+        workManager = "androidx.work:work-runtime-ktx:$work_manager"
 
         // Test dependencies
         testDependencies = [

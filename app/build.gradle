@@ -59,6 +59,7 @@ dependencies {
     implementation androidXDependencies.support
     implementation androidXDependencies.activity
     implementation androidXDependencies.fragment
+    implementation workManager
 
     for (dep in koinDependencies) {
         implementation dep
