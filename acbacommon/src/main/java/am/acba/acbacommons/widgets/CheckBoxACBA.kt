@@ -1,7 +1,7 @@
 package am.acba.acbacommons.widgets
 
 import am.acba.acbacommons.R
-import am.acba.acbacommons.shared.Extensions.showToast
+import am.acba.acbacommons.shared.extensions.showToast
 import am.acba.acbacommons.validators.Validator
 import android.content.Context
 import android.util.AttributeSet

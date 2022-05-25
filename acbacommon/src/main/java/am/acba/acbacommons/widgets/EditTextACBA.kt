@@ -1,9 +1,9 @@
 package am.acba.acbacommons.widgets
 
 import am.acba.acbacommons.R
-import am.acba.acbacommons.shared.Extensions.isValidEmail
-import am.acba.acbacommons.shared.Extensions.isValidPassword
-import am.acba.acbacommons.shared.Extensions.isValidRegex
+import am.acba.acbacommons.shared.extensions.isValidEmail
+import am.acba.acbacommons.shared.extensions.isValidPassword
+import am.acba.acbacommons.shared.extensions.isValidRegex
 import am.acba.acbacommons.validators.Validator
 import am.acba.acbacommons.validators.ValidatorEnum
 import android.content.Context

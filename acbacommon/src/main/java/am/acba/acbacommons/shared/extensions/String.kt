@@ -1,4 +1,4 @@
-package am.acba.acbacommons.shared.Extensions
+package am.acba.acbacommons.shared.extensions
 
 import android.util.Patterns
 import java.util.regex.Pattern

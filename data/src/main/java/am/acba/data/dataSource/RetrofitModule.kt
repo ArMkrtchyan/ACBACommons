@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RetrofitModule(
-    private val sharedPreferences: PreferencesManager,
+    private val mPreferencesManager: PreferencesManager,
     private val context: Context
 ) {
 

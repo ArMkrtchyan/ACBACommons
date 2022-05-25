@@ -1,12 +1,15 @@
 package am.acba.acbacommons.shared
 
+import am.acba.acbacommons.R
+import am.acba.acbacommons.shared.extensions.getByResourceId
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 
 class PreferencesManager(context: Context) {
 
-    val instance: SharedPreferences by lazy { context.getSharedPreferences("PREF_CONFIG", Context.MODE_PRIVATE) }
+    val instance: SharedPreferences =
+        context.getSharedPreferences("PREF_CONFIG_${context.getByResourceId<String>(R.string.app_name).uppercase()}", Context.MODE_PRIVATE)
 
     fun <T> saveByKey(key: String, value: T) = when (value) {
         is String -> instance.edit()

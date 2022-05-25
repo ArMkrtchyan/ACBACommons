@@ -1,5 +1,6 @@
 package am.acba.acbacommons.base
 
+import am.acba.acbacommons.shared.Inflater
 import am.acba.acbacommons.validators.Validator
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,11 +16,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private lateinit var _binding: VB
     protected val mBinding: VB
         get() = _binding
-    protected abstract val inflate: (LayoutInflater) -> VB
+    protected abstract val inflate: Inflater<VB>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (!::_binding.isInitialized || !keepBindingAlive) {
-            _binding = inflate(layoutInflater)
+            _binding = inflate(inflater, container, false)
         }
         return _binding.root
     }

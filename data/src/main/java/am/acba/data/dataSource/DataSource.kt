@@ -27,9 +27,7 @@ class DataSource constructor(
             if (result.isSuccessful) {
                 emit(result.body()?.Result?.let { mapper?.map(it) } ?: throw InternalServerErrorException(result.message()))
             } else {
-                if (result.code() == 401) {
-                    throw AuthException()
-                }
+                if (result.code() == 401) throw AuthException()
                 if (result.code() == 404) throw InternalServerErrorException(result.message())
                 if (result.code() in 400..499 && result.code() != 401 && result.code() != 404) throw BadRequestException(result.message())
                 else if (result.code() in 500..599) throw InternalServerErrorException(result.message())

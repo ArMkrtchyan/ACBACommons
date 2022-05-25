@@ -1,8 +1,10 @@
 package am.acba.app
 
 import am.acba.acbacommons.base.BaseActivityWithViewModel
+import am.acba.acbacommons.shared.extensions.getByResourceId
 import am.acba.app.databinding.ActivityMainBinding
 import am.acba.domain.models.RatesDomainModel
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,6 +30,11 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
                 mViewModel.getRates2()
                 mViewModel.getRates3()
             }
+        }
+        mBinding.validate.apply {
+            text = getByResourceId(R.string.app_name)
+            backgroundTintList = getByResourceId(R.color.colorAccentLight)
+            setTextColor(getByResourceId<ColorStateList>(R.color.colorPrimaryLight))
         }
         val constraint = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
         val getRatesRequest: OneTimeWorkRequest = OneTimeWorkRequestBuilder<GetRatesWorker>().setConstraints(constraint).build()

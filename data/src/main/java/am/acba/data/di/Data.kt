@@ -13,7 +13,7 @@ import org.koin.dsl.module
 val dataModule = module {
     single { PreferencesManager(context = get()) }
     single { NetworkConnection(context = get()) }
-    single { RetrofitModule(sharedPreferences = get(), context = get()).providesRetrofit() }
+    single { RetrofitModule(mPreferencesManager = get(), context = get()).providesRetrofit() }
     single<IDataSource> { DataSource(mPreferencesManager = get(), mNetworkConnection = get()) }
     factory { ServiceFactory.createRatesService(retrofit = get()) }
     single<RatesRepository> { RatesRepositoryImpl(mDataSource = get(), mService = get()) }
