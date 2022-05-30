@@ -1,6 +1,6 @@
 package am.acba.data.services
 
-import am.acba.data.dataSource.ResponseResult
+import am.acba.acbacommons.retrofit.ResponseResult
 import am.acba.data.responseModel.RatesResponseModel
 import retrofit2.http.GET
 

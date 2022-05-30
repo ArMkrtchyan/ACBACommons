@@ -1,6 +1,6 @@
-package am.acba.data.dataSource
+package am.acba.data
 
-import am.acba.data.mappers.IMapper
+import am.acba.acbacommons.retrofit.ResponseResult
 import kotlinx.coroutines.flow.Flow
 
 interface IDataSource {

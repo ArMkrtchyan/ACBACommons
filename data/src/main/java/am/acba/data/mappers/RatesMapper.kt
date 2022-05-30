@@ -1,5 +1,6 @@
 package am.acba.data.mappers
 
+import am.acba.data.IMapper
 import am.acba.data.responseModel.RatesResponseModel
 import am.acba.domain.models.RatesDomainModel
 

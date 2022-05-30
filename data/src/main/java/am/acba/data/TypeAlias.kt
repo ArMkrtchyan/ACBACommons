@@ -1,4 +1,4 @@
-package am.acba.data.dataSource
+package am.acba.acbacommons.retrofit
 
 import am.acba.data.responseModel.ResponseModel
 import retrofit2.Response

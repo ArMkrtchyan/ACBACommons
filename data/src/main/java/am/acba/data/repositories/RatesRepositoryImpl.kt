@@ -1,6 +1,6 @@
 package am.acba.data.repositories
 
-import am.acba.data.dataSource.IDataSource
+import am.acba.data.IDataSource
 import am.acba.data.mappers.RatesMapper
 import am.acba.data.services.IRatesService
 import am.acba.domain.models.RatesDomainModel

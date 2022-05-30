@@ -1,7 +1,7 @@
-package am.acba.data.dataSource
+package am.acba.acbacommons.retrofit
 
+import am.acba.acbacommons.BuildConfig
 import am.acba.acbacommons.shared.PreferencesManager
-import am.acba.data.BuildConfig
 import android.content.Context
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -12,29 +12,18 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitModule(
     private val mPreferencesManager: PreferencesManager,
-    private val context: Context
+    private val context: Context,
+    private val interceptors: BaseInterceptorsHelper,
 ) {
-
-    private val httpLoggerInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-
-    private fun providesAuthInterceptor(): Interceptor = Interceptor {
-        val requestBuilder = it.request()
-            .newBuilder()
-            .header("Content-Type", "application/json")
-            .removeHeader("Pragma")
-        val request = requestBuilder.build()
-        it.proceed(request)
-    }
 
     private fun provideOkHttpClient(): OkHttpClient {
         val client =
             OkHttpClient.Builder()
-                .addInterceptor(providesAuthInterceptor())
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
-        if (BuildConfig.DEBUG) {
-            client.addInterceptor(httpLoggerInterceptor)
+        for (interceptor: Interceptor in interceptors.interceptors) {
+            client.addInterceptor(interceptor)
         }
         return client.build()
     }
@@ -42,7 +31,7 @@ class RetrofitModule(
     fun providesRetrofit(): Retrofit =
         Retrofit.Builder()
             .client(provideOkHttpClient())
-            .baseUrl(BuildConfig.BASEURL)
+            .baseUrl("https://www.acbadigital.am/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 }

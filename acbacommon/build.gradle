@@ -49,7 +49,14 @@ dependencies {
     implementation thirthPartyDependencies.keyboardVisibilityEvent
 
     kapt kaptDependencies.glide
+    implementation workManager
 
+    for (dep in networkDependencies) {
+        implementation dep
+    }
+    for (dep in koinDependencies) {
+        implementation dep
+    }
     for (dep in liveDataVMDependencies) {
         implementation dep.value
     }
