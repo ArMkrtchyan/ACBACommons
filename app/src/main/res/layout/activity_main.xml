@@ -15,12 +15,12 @@
         android:padding="16dp"
         tools:context=".MainActivity">
 
-        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+        <com.github.armkrtchyan.common.widgets.TextInputLayoutACBA
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.EditTextACBA
+            <com.github.armkrtchyan.common.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#B8B8B8"
@@ -32,14 +32,14 @@
                 app:isRequiredForValidation="true"
                 app:validator="email" />
 
-        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        </com.github.armkrtchyan.common.widgets.TextInputLayoutACBA>
 
-        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+        <com.github.armkrtchyan.common.widgets.TextInputLayoutACBA
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.EditTextACBA
+            <com.github.armkrtchyan.common.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#B8B8B8"
@@ -50,15 +50,15 @@
                 app:isRequiredForValidation="true"
                 app:validator="email" />
 
-        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        </com.github.armkrtchyan.common.widgets.TextInputLayoutACBA>
 
 
-        <am.acba.acbacommons.widgets.TextInputLayoutACBA
+        <com.github.armkrtchyan.common.widgets.TextInputLayoutACBA
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
 
-            <am.acba.acbacommons.widgets.EditTextACBA
+            <com.github.armkrtchyan.common.widgets.EditTextACBA
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#B8B8B8"
@@ -69,9 +69,9 @@
                 app:minLength="6"
                 app:validator="password" />
 
-        </am.acba.acbacommons.widgets.TextInputLayoutACBA>
+        </com.github.armkrtchyan.common.widgets.TextInputLayoutACBA>
 
-        <am.acba.acbacommons.widgets.CheckBoxACBA
+        <com.github.armkrtchyan.common.widgets.CheckBoxACBA
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -81,7 +81,7 @@
             app:errorMessage="Must be checked"
             app:mustBeChecked="true" />
 
-        <am.acba.acbacommons.widgets.ButtonACBA
+        <com.github.armkrtchyan.common.widgets.ButtonACBA
             android:id="@+id/validate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,35 +1,25 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
     compileSdk projectCompileSdk
 
     defaultConfig {
-        applicationId "am.acba.app"
         minSdk projectMinSdk
         targetSdk projectTargetSdk
-        versionCode 1
-        versionName "1.0"
 
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            debuggable true
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -40,18 +30,13 @@ android {
         jvmTarget = '11'
     }
     buildFeatures {
-        viewBinding true
         dataBinding true
+        viewBinding true
     }
-    namespace 'am.acba.app'
+    namespace 'com.github.armkrtchyan.common'
 }
 
 dependencies {
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':domain')
-    implementation project(':common')
-    implementation project(':data')
 
     implementation androidXDependencies.appcompat
     implementation androidXDependencies.core
@@ -59,15 +44,38 @@ dependencies {
     implementation androidXDependencies.support
     implementation androidXDependencies.activity
     implementation androidXDependencies.fragment
+
+    implementation thirthPartyDependencies.ccp
+    implementation thirthPartyDependencies.keyboardVisibilityEvent
+
+    kapt kaptDependencies.glide
     implementation workManager
 
+    for (dep in networkDependencies) {
+        implementation dep
+    }
     for (dep in koinDependencies) {
+        implementation dep
+    }
+    for (dep in liveDataVMDependencies) {
+        implementation dep.value
+    }
+    for (dep in googleDependencies) {
+        implementation dep
+    }
+    for (dep in firebaseDependencies) {
         implementation dep
     }
     for (dep in navigationDependencies) {
         implementation dep
     }
-    for (dep in googleDependencies) {
+    for (dep in coroutineDependencies) {
         implementation dep
+    }
+    for (dep in mediaDependencies) {
+        implementation dep
+    }
+    for (dep in testDependencies) {
+        implementation dep.value
     }
 }

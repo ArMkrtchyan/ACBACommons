@@ -41,7 +41,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':domain')
-    implementation project(':acbacommon')
+    implementation project(':common')
 
     kapt kaptDependencies.room
 
