@@ -34,7 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    namespace 'am.acba.data'
+    namespace 'com.github.armkrtchyan.data'
 }
 
 dependencies {

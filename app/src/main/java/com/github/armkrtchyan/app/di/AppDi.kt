@@ -7,7 +7,7 @@ import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
 val appModule = module {
-    viewModel { MainViewModel(stateHandler = get(), mRatesRepository = get()) }
+    viewModel { MainViewModel(stateHandler = get(), mRatesRepository = get(), mConfigsRepository = get()) }
 }
 val workerModule = module {
     worker {

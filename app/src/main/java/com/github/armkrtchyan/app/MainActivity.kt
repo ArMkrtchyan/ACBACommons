@@ -1,15 +1,18 @@
 package com.github.armkrtchyan.app
 
-import com.github.armkrtchyan.common.base.BaseActivityWithViewModel
-import com.github.armkrtchyan.common.shared.extensions.getByResourceId
-import com.github.armkrtchyan.app.databinding.ActivityMainBinding
-import com.github.armkrtchyan.domain.models.RatesDomainModel
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.work.*
+import com.github.armkrtchyan.app.databinding.ActivityMainBinding
+import com.github.armkrtchyan.common.base.BaseActivityWithViewModel
+import com.github.armkrtchyan.common.shared.extensions.getByResourceId
+import com.github.armkrtchyan.domain.models.RatesDomainModel
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 
 class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewModel>() {
@@ -22,6 +25,7 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mViewModel.initConfig()
         mBinding.apply {
             validate.setOnClickListener {
                 validate()
@@ -29,6 +33,11 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
                 mViewModel.getRates()
                 mViewModel.getRates2()
                 mViewModel.getRates3()
+            }
+            lifecycleScope.launchWhenStarted {
+                mViewModel.buttonVisibilityFlow.collectLatest {
+                    validate.isVisible = it
+                }
             }
         }
         mBinding.validate.apply {

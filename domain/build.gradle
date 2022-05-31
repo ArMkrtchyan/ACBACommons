@@ -29,7 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-    namespace 'am.acba.domain'
+    namespace 'com.github.armkrtchyan.domain'
 }
 
 dependencies {

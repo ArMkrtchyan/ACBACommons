@@ -1,0 +1,14 @@
+{
+  "ui": {
+    "homeScreen": {
+      "isButtonVisible": true
+    }
+  },
+  "language": {
+    "languages": [
+      {
+        "languageName": "English"
+      }
+    ]
+  }
+}
