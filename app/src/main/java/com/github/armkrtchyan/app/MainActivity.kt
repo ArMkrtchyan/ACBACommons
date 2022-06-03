@@ -10,6 +10,7 @@ import androidx.work.*
 import com.github.armkrtchyan.app.databinding.ActivityMainBinding
 import com.github.armkrtchyan.common.base.BaseActivityWithViewModel
 import com.github.armkrtchyan.common.shared.extensions.getByResourceId
+import com.github.armkrtchyan.common.shared.extensions.log
 import com.github.armkrtchyan.domain.models.RatesDomainModel
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +30,7 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
         mBinding.apply {
             validate.setOnClickListener {
                 validate()
-                Log.i("ClickTag", "Clicked")
+                "Clicked".log("Click")
                 mViewModel.getRates()
                 mViewModel.getRates2()
                 mViewModel.getRates3()
@@ -49,26 +50,11 @@ class MainActivity : BaseActivityWithViewModel<ActivityMainBinding, MainViewMode
         val getRatesRequest: OneTimeWorkRequest = OneTimeWorkRequestBuilder<GetRatesWorker>().setConstraints(constraint).build()
         WorkManager.getInstance(this).enqueue(getRatesRequest)
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(getRatesRequest.id).observe(this) {
+            it.state.name.log("WorkManager")
             when (it.state) {
-                WorkInfo.State.RUNNING -> {
-                    Log.d("WorkManager", "RUNNING")
-                }
-                WorkInfo.State.ENQUEUED -> {
-                    Log.d("WorkManager", "ENQUEUED")
-                }
                 WorkInfo.State.SUCCEEDED -> {
-                    Log.d("WorkManager", "SUCCEEDED")
                     val res = Gson().fromJson(it.outputData.getString("result"), RatesDomainModel::class.java)
-                    Log.d("WorkManager", "$res")
-                }
-                WorkInfo.State.FAILED -> {
-                    Log.d("WorkManager", "FAILED")
-                }
-                WorkInfo.State.BLOCKED -> {
-                    Log.d("WorkManager", "BLOCKED")
-                }
-                WorkInfo.State.CANCELLED -> {
-                    Log.d("WorkManager", "CANCELLED")
+                    res.log("WorkManager")
                 }
             }
         }

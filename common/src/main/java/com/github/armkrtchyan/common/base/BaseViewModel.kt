@@ -3,6 +3,7 @@ package com.github.armkrtchyan.common.base
 import com.github.armkrtchyan.common.state.State
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.github.armkrtchyan.common.shared.extensions.log
 import kotlinx.coroutines.flow.*
 
 abstract class BaseViewModel : ViewModel(), IRetry {
@@ -19,8 +20,7 @@ abstract class BaseViewModel : ViewModel(), IRetry {
             .catch { if (showError) stateFlow.value = State.Error(it) }
             .onCompletion { stateFlow.value = if (it is List<*> && it.isEmpty()) State.Empty else State.Success }
             .collectLatest {
-                onSuccess(it)
-                Log.i("MakeRequestTag", "Success: $it")
+                onSuccess(it.log())
             }
     }
 
@@ -32,8 +32,7 @@ abstract class BaseViewModel : ViewModel(), IRetry {
         crossinline onSuccess: (Pair<T, K>) -> Unit
     ) {
         first.zip(second) { firstResponse, secondResponse ->
-            onSuccess(Pair(firstResponse, secondResponse))
-            Log.i("MakeRequestTag", "Success: ${Pair(firstResponse, secondResponse)}")
+            onSuccess(Pair(firstResponse, secondResponse).log())
         }
             .onStart { if (showLoading) stateFlow.value = State.Loading }
             .catch { if (showError) stateFlow.value = State.Error(it) }
@@ -63,8 +62,7 @@ abstract class BaseViewModel : ViewModel(), IRetry {
             .onCompletion { stateFlow.value = State.Success }
             .collectLatest {
                 if (firstRes != null && secondRes != null && thirdRes != null) {
-                    onSuccess(Triple(firstRes!!, secondRes!!, thirdRes!!))
-                    Log.i("MakeRequestTag", "Success: ${Triple(firstRes!!, secondRes!!, thirdRes!!)}")
+                    onSuccess(Triple(firstRes!!, secondRes!!, thirdRes!!).log())
                 }
             }
     }

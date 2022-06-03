@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.github.armkrtchyan.common.base.BaseViewModel
+import com.github.armkrtchyan.common.shared.extensions.log
 import com.github.armkrtchyan.domain.models.RatesDomainModel
 import com.github.armkrtchyan.domain.repositories.ConfigsRepository
 import com.github.armkrtchyan.domain.repositories.RatesRepository
@@ -21,7 +22,7 @@ class MainViewModel(
         get() = _buttonVisibilityFlow
 
     fun getRates() {
-        Log.i("SavedTag", stateHandler.get<RatesDomainModel>("Rates").toString())
+        stateHandler.get<RatesDomainModel>("Rates").log()
         viewModelScope.launch {
             handleNetworkResult(mRatesRepository.getRates()) {
                 stateHandler["Rates"] = it
