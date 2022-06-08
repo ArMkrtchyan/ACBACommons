@@ -1,8 +1,8 @@
 package com.github.armkrtchyan.common.base
 
-import com.github.armkrtchyan.common.di.commonDataModule
 import android.app.Application
 import androidx.work.Configuration
+import com.github.armkrtchyan.common.di.commonDataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
@@ -22,7 +22,8 @@ abstract class BaseApplication : Application(), Configuration.Provider {
         startKoin {
             androidContext(this@BaseApplication)
             workManagerFactory()
-            modules(listOf(commonDataModule) + modules)
+            modules(listOf(commonDataModule))
+                .modules(modules)
         }
     }
 }

@@ -1,18 +1,18 @@
 package com.github.armkrtchyan.common.widgets
 
-import com.github.armkrtchyan.common.R
-import com.github.armkrtchyan.common.shared.PreventDoubleClickListener
 import android.content.Context
 import android.util.AttributeSet
+import com.github.armkrtchyan.common.R
+import com.github.armkrtchyan.common.shared.PreventDoubleClickListener
 import com.google.android.material.button.MaterialButton
 
 class ButtonACBA : MaterialButton {
     constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs, R.attr.buttonStyle) {
         init(attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, R.attr.buttonStyle) {
         init(attrs)
     }
 

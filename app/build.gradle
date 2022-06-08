@@ -1,17 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    id 'androidx.navigation.safeargs'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
     compileSdk projectCompileSdk
 
     defaultConfig {
-        applicationId "am.acba.app"
+        applicationId "am"
         minSdk projectMinSdk
         targetSdk projectTargetSdk
         versionCode 1
@@ -20,7 +17,27 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
     }
-
+    flavorDimensions "banks"
+    productFlavors {
+        acba {
+            dimension "banks"
+            applicationIdSuffix  ".acba.app"
+            versionCode 1
+            versionName "1.0"
+        }
+        ameria {
+            dimension "banks"
+            applicationIdSuffix  ".ameria.app"
+            versionCode 1
+            versionName "1.0"
+        }
+        converse {
+            dimension 'banks'
+            applicationIdSuffix  ".converse.app"
+            versionCode 1
+            versionName "1.0"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -47,27 +64,6 @@ android {
 }
 
 dependencies {
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':domain')
-    implementation project(':common')
-    implementation project(':data')
-
-    implementation androidXDependencies.appcompat
-    implementation androidXDependencies.core
-    implementation androidXDependencies.constraintlayout
-    implementation androidXDependencies.support
-    implementation androidXDependencies.activity
-    implementation androidXDependencies.fragment
-    implementation workManager
-
-    for (dep in koinDependencies) {
-        implementation dep
-    }
-    for (dep in navigationDependencies) {
-        implementation dep
-    }
-    for (dep in googleDependencies) {
-        implementation dep
-    }
+    implementation project(':banking')
 }

@@ -44,19 +44,5 @@ dependencies {
     implementation project(':common')
 
     kapt kaptDependencies.room
-
-    for (dep in koinDependencies) {
-        implementation dep
-    }
-    for (dep in roomDependencies) {
-        implementation dep
-    }
-    for (dep in networkDependencies) {
-        implementation dep
-    }
-    for (dep in coroutineDependencies) {
-        implementation dep
-    }
-
-    implementation testDependencies.junit
+    implementation roomDependencies.values()
 }

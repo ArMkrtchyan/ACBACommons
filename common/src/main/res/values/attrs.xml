@@ -18,7 +18,7 @@
         <attr name="minLength" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="TextInputLayoutACBA"></declare-styleable>
+    <declare-styleable name="TextInputLayoutACBA" />
 
     <declare-styleable name="ButtonACBA">
         <attr name="clickInterval" format="integer" />
@@ -30,12 +30,17 @@
         <attr name="mustBeChecked" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ToolbarACBA"></declare-styleable>
+    <declare-styleable name="ToolbarACBA" />
+
     <declare-styleable name="TextViewACBA">
         <attr name="isPreventClick" />
     </declare-styleable>
+
     <declare-styleable name="ImageViewACBA">
         <attr name="isPreventClick" />
     </declare-styleable>
 
+    <declare-styleable name="DefaultStylesTheme">
+        <attr name="buttonStyle" format="reference" />
+    </declare-styleable>
 </resources>

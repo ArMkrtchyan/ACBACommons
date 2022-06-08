@@ -37,45 +37,17 @@ android {
 }
 
 dependencies {
-
-    implementation androidXDependencies.appcompat
-    implementation androidXDependencies.core
-    implementation androidXDependencies.constraintlayout
-    implementation androidXDependencies.support
-    implementation androidXDependencies.activity
-    implementation androidXDependencies.fragment
-
-    implementation thirthPartyDependencies.ccp
-    implementation thirthPartyDependencies.keyboardVisibilityEvent
-
     kapt kaptDependencies.glide
-    implementation workManager
 
-    for (dep in networkDependencies) {
-        implementation dep
-    }
-    for (dep in koinDependencies) {
-        implementation dep
-    }
-    for (dep in liveDataVMDependencies) {
-        implementation dep.value
-    }
-    for (dep in googleDependencies) {
-        implementation dep
-    }
-    for (dep in firebaseDependencies) {
-        implementation dep
-    }
-    for (dep in navigationDependencies) {
-        implementation dep
-    }
-    for (dep in coroutineDependencies) {
-        implementation dep
-    }
-    for (dep in mediaDependencies) {
-        implementation dep
-    }
-    for (dep in testDependencies) {
-        implementation dep.value
-    }
+    api workManager
+    api androidXDependencies.values()
+    api networkDependencies.values()
+    api koinDependencies.values()
+    api liveDataVMDependencies.values()
+    api googleDependencies.values()
+    api firebaseDependencies.values()
+    api navigationDependencies.values()
+    api coroutineDependencies.values()
+    api mediaDependencies.values()
+    api testDependencies.values()
 }

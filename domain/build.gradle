@@ -33,10 +33,7 @@ android {
 }
 
 dependencies {
-    for (dep in coroutineDependencies) {
-        implementation dep
-    }
-
+    implementation coroutineDependencies.values()
     implementation liveDataVMDependencies.lifecycleLivedata
     implementation liveDataVMDependencies.lifecycleRuntime
     implementation testDependencies.junit
