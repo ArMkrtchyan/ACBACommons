@@ -6,7 +6,7 @@ import com.github.armkrtchyan.common.R
 import com.github.armkrtchyan.common.shared.PreventDoubleClickListener
 import com.google.android.material.button.MaterialButton
 
-class ButtonACBA : MaterialButton {
+class CommonButton : MaterialButton {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs, R.attr.buttonStyle) {
         init(attrs)
@@ -19,8 +19,8 @@ class ButtonACBA : MaterialButton {
     private var mIsPreventDoubleClick = true
 
     private fun init(attrs: AttributeSet) {
-        context.obtainStyledAttributes(attrs, R.styleable.ButtonACBA).apply {
-            mIsPreventDoubleClick = getBoolean(R.styleable.ButtonACBA_isPreventClick, true)
+        context.obtainStyledAttributes(attrs, R.styleable.CommonButton).apply {
+            mIsPreventDoubleClick = getBoolean(R.styleable.CommonButton_isPreventClick, true)
             recycle()
         }
     }

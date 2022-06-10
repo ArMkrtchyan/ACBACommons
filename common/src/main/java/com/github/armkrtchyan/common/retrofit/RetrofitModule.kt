@@ -1,7 +1,5 @@
 package com.github.armkrtchyan.common.retrofit
 
-import com.github.armkrtchyan.common.shared.PreferencesManager
-import android.content.Context
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

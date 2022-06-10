@@ -20,7 +20,7 @@
 
     <declare-styleable name="TextInputLayoutACBA" />
 
-    <declare-styleable name="ButtonACBA">
+    <declare-styleable name="CommonButton">
         <attr name="clickInterval" format="integer" />
         <attr name="isPreventClick" />
     </declare-styleable>
@@ -30,7 +30,7 @@
         <attr name="mustBeChecked" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ToolbarACBA" />
+    <declare-styleable name="CommonToolbar" />
 
     <declare-styleable name="TextViewACBA">
         <attr name="isPreventClick" />
@@ -42,5 +42,6 @@
 
     <declare-styleable name="DefaultStylesTheme">
         <attr name="buttonStyle" format="reference" />
+        <attr name="commonToolbarStyle" format="reference" />
     </declare-styleable>
 </resources>

@@ -1,8 +1,8 @@
 package com.github.armkrtchyan.common.di
 
+import com.github.armkrtchyan.common.retrofit.RetrofitModule
 import com.github.armkrtchyan.common.shared.NetworkConnection
 import com.github.armkrtchyan.common.shared.PreferencesManager
-import com.github.armkrtchyan.common.retrofit.RetrofitModule
 import org.koin.dsl.module
 
 val commonDataModule = module {

@@ -1,11 +1,11 @@
 package com.github.armkrtchyan.banking
 
-import com.github.armkrtchyan.domain.repositories.RatesRepository
 import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import com.github.armkrtchyan.domain.repositories.RatesRepository
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest

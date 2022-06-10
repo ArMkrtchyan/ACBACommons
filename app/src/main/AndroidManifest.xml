@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.github.armkrtchyan.banking.MainActivity"
+            android:name="com.github.armkrtchyan.banking.ui.splashscreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.github.armkrtchyan.banking.ui.authentication.AuthenticationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.github.armkrtchyan.banking.MainActivity"
+            android:exported="false" />
         <!-- disable default Initializer -->
         <provider
             android:name="androidx.startup.InitializationProvider"

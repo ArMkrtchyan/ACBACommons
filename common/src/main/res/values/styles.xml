@@ -11,6 +11,7 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowSoftInputMode">adjustPan</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="commonToolbarStyle">@style/CommonToolbarStyle</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme" />
@@ -21,4 +22,17 @@
     </style>
 
     <style name="ButtonStyle" parent="BaseButtonStyle" />
+
+    <style name="BaseCommonToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:height">?attr/actionBarSize</item>
+        <item name="titleTextAppearance">@style/MyTitleTextAppearance</item>
+    </style>
+
+    <style name="MyTitleTextAppearance" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="CommonToolbarStyle" parent="BaseCommonToolbarStyle" />
 </resources>

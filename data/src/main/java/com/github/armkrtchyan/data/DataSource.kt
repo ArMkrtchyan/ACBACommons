@@ -4,8 +4,8 @@ import com.github.armkrtchyan.common.exceptions.AuthException
 import com.github.armkrtchyan.common.exceptions.BadRequestException
 import com.github.armkrtchyan.common.exceptions.InternalServerErrorException
 import com.github.armkrtchyan.common.exceptions.NetworkException
-import com.github.armkrtchyan.common.shared.NetworkConnection
 import com.github.armkrtchyan.common.retrofit.ResponseResult
+import com.github.armkrtchyan.common.shared.NetworkConnection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

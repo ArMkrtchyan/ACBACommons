@@ -1,9 +1,8 @@
 package com.github.armkrtchyan.common.base
 
-import com.github.armkrtchyan.common.state.State
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.github.armkrtchyan.common.shared.extensions.log
+import com.github.armkrtchyan.common.state.State
 import kotlinx.coroutines.flow.*
 
 abstract class BaseViewModel : ViewModel(), IRetry {

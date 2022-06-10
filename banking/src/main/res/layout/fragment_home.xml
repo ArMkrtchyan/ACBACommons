@@ -80,7 +80,7 @@
             app:errorMessage="Must be checked"
             app:mustBeChecked="true" />
 
-        <com.github.armkrtchyan.common.widgets.ButtonACBA
+        <com.github.armkrtchyan.common.widgets.CommonButton
             android:id="@+id/validate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

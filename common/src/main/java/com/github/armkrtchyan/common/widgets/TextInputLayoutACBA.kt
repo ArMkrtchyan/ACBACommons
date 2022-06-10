@@ -1,8 +1,8 @@
 package com.github.armkrtchyan.common.widgets
 
-import com.github.armkrtchyan.common.R
 import android.content.Context
 import android.util.AttributeSet
+import com.github.armkrtchyan.common.R
 import com.google.android.material.textfield.TextInputLayout
 
 class TextInputLayoutACBA : TextInputLayout {

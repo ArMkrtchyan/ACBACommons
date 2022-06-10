@@ -95,4 +95,9 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         newConfig.setLocale(locale)
         super.attachBaseContext(newBase?.createConfigurationContext(newConfig))
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
 }

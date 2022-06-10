@@ -1,13 +1,13 @@
 package com.github.armkrtchyan.common.widgets
 
+import android.content.Context
+import android.util.AttributeSet
 import com.github.armkrtchyan.common.R
 import com.github.armkrtchyan.common.shared.extensions.isValidEmail
 import com.github.armkrtchyan.common.shared.extensions.isValidPassword
 import com.github.armkrtchyan.common.shared.extensions.isValidRegex
 import com.github.armkrtchyan.common.validators.Validator
 import com.github.armkrtchyan.common.validators.ValidatorEnum
-import android.content.Context
-import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputEditText
 
 class EditTextACBA : TextInputEditText, Validator {

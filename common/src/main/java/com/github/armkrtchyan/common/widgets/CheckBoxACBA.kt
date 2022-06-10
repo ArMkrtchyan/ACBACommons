@@ -1,11 +1,11 @@
 package com.github.armkrtchyan.common.widgets
 
-import com.github.armkrtchyan.common.R
-import com.github.armkrtchyan.common.shared.extensions.showToast
-import com.github.armkrtchyan.common.validators.Validator
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatCheckBox
+import com.github.armkrtchyan.common.R
+import com.github.armkrtchyan.common.shared.extensions.showToast
+import com.github.armkrtchyan.common.validators.Validator
 import kotlin.properties.Delegates
 
 class CheckBoxACBA : AppCompatCheckBox, Validator {

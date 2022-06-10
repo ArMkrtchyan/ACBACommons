@@ -1,10 +1,10 @@
 package com.github.armkrtchyan.common.widgets
 
-import com.github.armkrtchyan.common.R
-import com.github.armkrtchyan.common.shared.PreventDoubleClickListener
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import com.github.armkrtchyan.common.R
+import com.github.armkrtchyan.common.shared.PreventDoubleClickListener
 
 class TextViewACBA : AppCompatTextView {
     constructor(context: Context) : super(context)

@@ -21,19 +21,19 @@ android {
     productFlavors {
         acba {
             dimension "banks"
-            applicationIdSuffix  ".acba.app"
+            applicationIdSuffix ".acba.app"
             versionCode 1
             versionName "1.0"
         }
         ameria {
             dimension "banks"
-            applicationIdSuffix  ".ameria.app"
+            applicationIdSuffix ".ameria.app"
             versionCode 1
             versionName "1.0"
         }
         converse {
             dimension 'banks'
-            applicationIdSuffix  ".converse.app"
+            applicationIdSuffix ".converse.app"
             versionCode 1
             versionName "1.0"
         }

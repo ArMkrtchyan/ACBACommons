@@ -4,19 +4,20 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.work.*
 import com.github.armkrtchyan.banking.GetRatesWorker
 import com.github.armkrtchyan.banking.databinding.FragmentSplashScreenBinding
-import com.github.armkrtchyan.common.base.BaseFragment
+import com.github.armkrtchyan.banking.ui.authentication.AuthenticationActivity
+import com.github.armkrtchyan.common.base.BaseViewBindingFragment
 import com.github.armkrtchyan.common.shared.Inflater
+import com.github.armkrtchyan.common.shared.extensions.launch
 import com.github.armkrtchyan.common.shared.extensions.log
 import com.github.armkrtchyan.domain.models.RatesDomainModel
 import com.google.gson.Gson
 import kotlinx.coroutines.delay
 
 @SuppressLint("CustomSplashScreen")
-class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>() {
+class SplashScreenFragment : BaseViewBindingFragment<FragmentSplashScreenBinding>() {
     override val inflate: Inflater<FragmentSplashScreenBinding>
         get() = FragmentSplashScreenBinding::inflate
 
@@ -31,12 +32,18 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>() {
                 WorkInfo.State.SUCCEEDED -> {
                     val res = Gson().fromJson(it.outputData.getString("result"), RatesDomainModel::class.java)
                     res.log("WorkManager")
-                    lifecycleScope.launchWhenResumed {
-                        delay(2000)
-                        view.findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
-                    }
+                    navigateToAuthActivityDelayed()
                 }
+                WorkInfo.State.FAILED -> navigateToAuthActivityDelayed()
+                WorkInfo.State.CANCELLED -> navigateToAuthActivityDelayed()
             }
+        }
+    }
+
+    private fun navigateToAuthActivityDelayed() {
+        lifecycleScope.launchWhenResumed {
+            delay(2000)
+            launch<AuthenticationActivity>(finish = true)
         }
     }
 }
