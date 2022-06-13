@@ -1,4 +1,4 @@
-package com.github.armkrtchyan.banking.ui.authentication.registration
+package com.github.armkrtchyan.banking.ui.authentication.registration.phoneverification
 
 import com.github.armkrtchyan.banking.databinding.FragmentPhoneNumberBinding
 import com.github.armkrtchyan.banking.ui.authentication.registration.base.BaseRegistrationFragment
@@ -17,5 +17,6 @@ class PhoneNumberFragment : BaseRegistrationFragment<FragmentPhoneNumberBinding,
         get() = FragmentPhoneNumberBinding::inflate
     override val mViewModel: PhoneNumberViewModel
         get() = getViewModel()
-
+    override val mTitle: String
+        get() = "Phone verification"
 }
