@@ -15,7 +15,7 @@ class GetRatesWorker(private val mRatesRepository: RatesRepository, context: Con
         Log.d("WorkManager", "Work start")
         var res = Result.success()
         mRatesRepository.getRates().catch {
-            res = Result.retry()
+            res = Result.Failure()
         }.collectLatest {
             res = Result.success(workDataOf("result" to Gson().toJson(it)))
         }

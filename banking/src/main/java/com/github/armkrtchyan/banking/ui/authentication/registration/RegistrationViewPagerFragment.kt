@@ -1,5 +1,7 @@
 package com.github.armkrtchyan.banking.ui.authentication.registration
 
+import android.os.Bundle
+import androidx.lifecycle.LiveData
 import com.github.armkrtchyan.banking.ui.authentication.registration.base.BaseRegistrationFragment
 import com.github.armkrtchyan.banking.ui.authentication.registration.base.BaseRegistrationViewPagerFragment
 import com.github.armkrtchyan.banking.ui.authentication.registration.emailverification.EmailFragment
@@ -8,16 +10,29 @@ import com.github.armkrtchyan.banking.ui.authentication.registration.phoneverifi
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class RegistrationViewPagerFragment : BaseRegistrationViewPagerFragment<RegistrationViewPagerViewModel, RegistrationRequestModel>() {
+    private val fragments = listOf<BaseRegistrationFragment<*, *>>(PhoneNumberFragment.newInstance(), EmailFragment.newInstance())
     override val mRequestModel: RegistrationRequestModel
         get() = RegistrationRequestModel()
     override val mViewModel: RegistrationViewPagerViewModel
         get() = getViewModel()
     override val mTitle: String
         get() = "Registration"
+    override val mLastButtonTitle: String
+        get() = "Register"
     override val mViewPagerFragments: List<BaseRegistrationFragment<*, *>>
-        get() = listOf(PhoneNumberFragment.newInstance(), EmailFragment.newInstance())
+        get() = fragments
+    override val mLiveDataList: List<LiveData<*>>
+        get() = listOf(mViewModel.firstLiveData, mViewModel.secondLiveData, mViewModel.thirdLiveData, mViewModel.fourthLiveData)
 
     override fun register() {
         mViewModel.register(mRequestModel)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mViewModel.firstRequest()
+        mViewModel.secondRequest()
+        mViewModel.thirdRequest()
+        mViewModel.fourthRequest()
     }
 }
