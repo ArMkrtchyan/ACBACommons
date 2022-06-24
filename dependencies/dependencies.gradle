@@ -6,6 +6,9 @@ ext {
 
     kotlinVersion = '1.6.21'
 
+    commonVersion = 'v0.0.1-alpha-01'
+    common = "com.github.ArMkrtchyan:Android-Common:$commonVersion"
+
     // AndroidX dependencies
     appcompatVersion = '1.4.2'
     coreKtx = '1.8.0'

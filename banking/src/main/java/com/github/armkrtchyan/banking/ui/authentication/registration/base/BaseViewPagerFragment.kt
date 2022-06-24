@@ -59,8 +59,7 @@ abstract class BaseViewPagerFragment<VIEWMODEL : BaseViewModel, REQUESTMODEL> : 
             adapter = mViewPagerAdapter
             offscreenPageLimit = mViewPagerFragments.size
             isUserInputEnabled = false
-            if (mLiveDataList.isNotEmpty())
-                visibility = View.INVISIBLE
+            if (mLiveDataList.isNotEmpty()) visibility = View.INVISIBLE
         }
     }
 
@@ -74,24 +73,21 @@ abstract class BaseViewPagerFragment<VIEWMODEL : BaseViewModel, REQUESTMODEL> : 
     private val onPageChangeListener: ViewPager2.OnPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            if (position > 0) {
-                mToolbar.navigationIcon = requireContext().getByResourceId(R.drawable.ic_back)
-                mToolbar.setNavigationOnClickListener {
-                    navigatePreviousPage()
-                }
-            } else {
-                mToolbar.navigationIcon = null
-                mToolbar.setNavigationOnClickListener(null)
-            }
-            mViewPagerFragments[position].mTitle?.let {
-                mToolbar.title = it
-            } ?: run {
-                mToolbar.title = mTitle
-            }
-            if (isLastPage())
-                mViewPagerFragments[position].mButtonTextStateFlow.value = mLastButtonTitle
+            setupToolbarByViewPagerPosition(position)
+            if (isLastPage()) mViewPagerFragments[position].mButtonTextStateFlow.value = mLastButtonTitle
             else mViewPagerFragments[position].mButtonTextStateFlow.value = "Next"
         }
+    }
+
+    private fun setupToolbarByViewPagerPosition(position: Int) {
+        if (position > 0) {
+            mToolbar.navigationIcon = requireContext().getByResourceId(R.drawable.ic_back)
+            mToolbar.setNavigationOnClickListener { navigatePreviousPage() }
+        } else {
+            mToolbar.navigationIcon = null
+            mToolbar.setNavigationOnClickListener(null)
+        }
+        mViewPagerFragments[position].mTitle?.let { mToolbar.title = it } ?: run { mToolbar.title = mTitle }
     }
 
     fun navigatePreviousPage(): Boolean {
