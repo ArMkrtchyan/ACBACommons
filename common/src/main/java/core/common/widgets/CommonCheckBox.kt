@@ -1,0 +1,48 @@
+package core.common.widgets
+
+import android.content.Context
+import android.util.AttributeSet
+import androidx.appcompat.widget.AppCompatCheckBox
+import core.common.R
+import core.common.shared.extensions.showToast
+import core.common.validators.Validator
+import kotlin.properties.Delegates
+
+class CommonCheckBox : AppCompatCheckBox, Validator {
+
+    private var mIsRequiredForValidation by Delegates.notNull<Boolean>()
+    private var mErrorMessage: String? = null
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(attrs)
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init(attrs)
+    }
+
+    private fun init(attrs: AttributeSet) {
+        context.obtainStyledAttributes(attrs, R.styleable.CommonCheckBox).apply {
+            mErrorMessage = getString(R.styleable.CommonCheckBox_errorMessage)
+            mIsRequiredForValidation = getBoolean(R.styleable.CommonCheckBox_mustBeChecked, false)
+            recycle()
+        }
+    }
+
+    override fun isRequiredForValidation() = mIsRequiredForValidation
+
+    override fun isValid(): Boolean {
+        if (!isChecked) return setError(mErrorMessage)
+        return isChecked
+    }
+
+    override fun setError(message: String?): Boolean {
+        context.showToast(message)
+        return false
+    }
+
+    override fun setDefaultState() {
+
+    }
+}

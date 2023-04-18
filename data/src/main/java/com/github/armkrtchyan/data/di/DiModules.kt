@@ -1,12 +1,12 @@
 package com.github.armkrtchyan.data.di
 
-import com.github.armkrtchyan.common.retrofit.BaseInterceptorsHelper
 import com.github.armkrtchyan.data.InterceptorHelper
 import com.github.armkrtchyan.data.repositories.ConfigsRepositoryImpl
 import com.github.armkrtchyan.data.repositories.RatesRepositoryImpl
 import com.github.armkrtchyan.data.services.ServiceFactory
 import com.github.armkrtchyan.domain.repositories.ConfigsRepository
 import com.github.armkrtchyan.domain.repositories.RatesRepository
+import core.common.retrofit.BaseInterceptorsHelper
 import org.koin.dsl.module
 
 val dataModule = module {

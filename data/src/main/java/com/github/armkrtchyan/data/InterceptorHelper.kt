@@ -1,8 +1,8 @@
 package com.github.armkrtchyan.data
 
-import com.github.armkrtchyan.common.retrofit.BaseInterceptorsHelper
+import core.common.retrofit.BaseInterceptorsHelper
+import core.common.retrofit.HttpLoggingInterceptor
 import okhttp3.Interceptor
-import okhttp3.logging.HttpLoggingInterceptor
 
 class InterceptorHelper : BaseInterceptorsHelper() {
     override val interceptors: List<Interceptor>

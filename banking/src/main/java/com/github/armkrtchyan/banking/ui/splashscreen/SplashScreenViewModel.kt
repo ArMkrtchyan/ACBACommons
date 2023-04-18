@@ -1,8 +1,8 @@
 package com.github.armkrtchyan.banking.ui.splashscreen
 
 import androidx.lifecycle.viewModelScope
-import com.github.armkrtchyan.common.base.BaseViewModel
 import com.github.armkrtchyan.domain.repositories.ConfigsRepository
+import core.common.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class SplashScreenViewModel(

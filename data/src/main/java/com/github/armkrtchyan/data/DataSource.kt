@@ -1,11 +1,11 @@
 package com.github.armkrtchyan.data
 
-import com.github.armkrtchyan.common.exceptions.AuthException
-import com.github.armkrtchyan.common.exceptions.BadRequestException
-import com.github.armkrtchyan.common.exceptions.InternalServerErrorException
-import com.github.armkrtchyan.common.exceptions.NetworkException
 import com.github.armkrtchyan.common.retrofit.ResponseResult
-import com.github.armkrtchyan.common.shared.NetworkConnection
+import core.common.exceptions.AuthException
+import core.common.exceptions.BadRequestException
+import core.common.exceptions.InternalServerErrorException
+import core.common.exceptions.NetworkException
+import core.common.shared.NetworkConnection
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

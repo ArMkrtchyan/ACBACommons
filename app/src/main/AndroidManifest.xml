@@ -20,9 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.github.armkrtchyan.banking.ui.authentication.AuthenticationActivity"
-            android:exported="false" />
-        <activity
             android:name="com.github.armkrtchyan.banking.MainActivity"
             android:exported="false" />
         <!-- disable default Initializer -->
