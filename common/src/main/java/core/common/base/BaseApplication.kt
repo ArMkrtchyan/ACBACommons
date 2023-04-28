@@ -2,7 +2,6 @@ package core.common.base
 
 import android.app.Application
 import androidx.work.Configuration
-import core.common.BuildConfig
 import core.common.di.commonDataModule
 import core.common.exceptions.CrashHandler
 import org.koin.android.ext.koin.androidContext
@@ -26,13 +25,11 @@ abstract class BaseApplication : Application(), Configuration.Provider {
             androidContext(this@BaseApplication)
             modules(listOf(commonDataModule)).modules(modules)
         }
-        setupChuckerErrors()
+        setupCustomUncaughtExceptionHandler()
     }
 
-    private fun setupChuckerErrors() {
-        if (BuildConfig.DEBUG) {
-            val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
-            Thread.setDefaultUncaughtExceptionHandler(CrashHandler(systemHandler, this))
-        }
+    private fun setupCustomUncaughtExceptionHandler() {
+        val systemHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler(CrashHandler(systemHandler, this))
     }
 }

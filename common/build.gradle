@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -34,6 +35,19 @@ android {
         viewBinding true
     }
     namespace 'core.common'
+}
+
+dokkaHtml {
+    suppressObviousFunctions.set(false)
+    suppressInheritedMembers.set(true)
+}
+
+dokkaHtml.configure {
+    dokkaSourceSets {
+        configureEach {
+            includes.from("COMMON.md")
+        }
+    }
 }
 
 dependencies {

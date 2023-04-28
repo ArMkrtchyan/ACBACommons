@@ -3,11 +3,14 @@ package core.common.base
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.viewbinding.ViewBinding
@@ -21,17 +24,16 @@ import java.util.*
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
-    protected open val keepBindingAlive: Boolean = true
     private lateinit var _binding: VB
-    val mBinding: VB
+    val binding: VB
         get() = _binding
     protected abstract val inflate: (LayoutInflater) -> VB
     protected abstract fun VB.initView()
-    private var mLoadingDialog: LoadingAlertDialog? = null
+    private var loadingDialog: LoadingAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (!::_binding.isInitialized || !keepBindingAlive) {
+        if (!::_binding.isInitialized) {
             _binding = inflate(layoutInflater)
             _binding.initView()
         }
@@ -62,21 +64,21 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     open fun logout() {}
 
-//    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-//        if (event?.action == MotionEvent.ACTION_DOWN) {
-//            val focusedView = currentFocus
-//            if (focusedView is EditText) {
-//                val out = Rect()
-//                focusedView.getGlobalVisibleRect(out)
-//                if (!out.contains(event.rawX.toInt(), event.rawY.toInt())) {
-//                    focusedView.clearFocus()
-//                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//                    imm.hideSoftInputFromWindow(focusedView.windowToken, 0)
-//                }
-//            }
-//        }
-//        return super.dispatchTouchEvent(event)
-//    }
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            val focusedView = currentFocus
+            if (focusedView is EditText) {
+                val out = Rect()
+                focusedView.getGlobalVisibleRect(out)
+                if (!out.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    focusedView.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(focusedView.windowToken, 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
+    }
 
     override fun attachBaseContext(newBase: Context?) {
         val locale = Locale("hy")
@@ -110,11 +112,11 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     open fun showLoading() {
-        mLoadingDialog?.dismiss()
-        mLoadingDialog = LoadingAlertDialog.Builder(this).build()
+        loadingDialog?.dismiss()
+        loadingDialog = LoadingAlertDialog.Builder(this).build()
     }
 
     open fun hideLoading() {
-        mLoadingDialog?.dismiss()
+        loadingDialog?.dismiss()
     }
 }

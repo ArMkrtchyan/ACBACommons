@@ -5,11 +5,11 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import android.provider.Settings
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.RetentionManager
 import core.common.exceptions.exceptionhandler.ErrorModel
 import core.common.exceptions.exceptionhandler.ExceptionActivity
+import core.common.shared.extensions.getDeviceId
 
 class CrashHandler(
     private val defaultHandler: Thread.UncaughtExceptionHandler? = null, private val applicationContext: Context
@@ -25,7 +25,7 @@ class CrashHandler(
         )
     }
 
-    override fun uncaughtException(thread: Thread?, throwable: Throwable) {
+    override fun uncaughtException(thread: Thread, throwable: Throwable) {
         chuckerCollector.onError("error", throwable)
         val pair = try {
             val pInfo: PackageInfo = applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0)
@@ -37,10 +37,8 @@ class CrashHandler(
 
         val s =
             "throwable -> ${throwable.message}\n" + "manufacture -> ${Build.MANUFACTURER}\n" + "deviceModel -> ${Build.MODEL}\n" + "versionName -> ${pair.first}\n" + "versionCode -> ${pair.second}\n" + "androidVersionCode -> ${Build.VERSION.SDK_INT}\n" + "deviceId -> ${
-                Settings.Secure.getString(
-                    applicationContext.contentResolver, Settings.Secure.ANDROID_ID
-                )
-            }\n" + "threadName -> ${thread?.name}\n" + "stackTrace -> ${throwable.stackTraceToString()}"
+                applicationContext.getDeviceId()
+            }\n" + "threadName -> ${thread.name}\n" + "stackTrace -> ${throwable.stackTraceToString()}"
 
         val model = ErrorModel()
         model.text = s
